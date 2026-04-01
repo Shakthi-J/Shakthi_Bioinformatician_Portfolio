@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shakthi J — Bioinformatics Specialist | NGS · Pipeline · AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060A0F;
+  --surface: #0D1421;
+  --surface2: #111928;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #E2EAF4;
+  --muted: #6B7F99;
+  --accent: #00D4AA;
+  --accent2: #3B82F6;
+  --accent3: #8B5CF6;
+  --warn: #F59E0B;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
+  --serif: 'Fraunces', serif;
+}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+
+/* ── GRID NOISE ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.4;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 3.5rem;
+  background: rgba(6,10,15,0.85); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--mono); font-size: 0.9rem; font-weight: 600;
+  color: var(--accent); text-decoration: none; letter-spacing: 0.05em;
+}
+.nav-logo span { color: var(--muted); }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links a {
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted); text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-cta {
+  background: var(--accent); color: #000; padding: 0.45rem 1.2rem;
+  border-radius: 6px; font-size: 0.78rem; font-weight: 700;
+  text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding: 9rem 3.5rem 5rem;
+  position: relative; overflow: hidden;
+}
+.hero-glow {
+  position: absolute; top: -200px; left: -100px;
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,212,170,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-glow2 {
+  position: absolute; bottom: -150px; right: -150px;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-inner { max-width: 800px; position: relative; z-index: 1; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em;
+  color: var(--accent); text-transform: uppercase;
+  background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.2);
+  padding: 0.35rem 0.9rem; border-radius: 4px; margin-bottom: 1.8rem;
+  animation: fadeUp 0.5s ease both;
+}
+.hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+.hero-title {
+  font-family: var(--serif); font-size: clamp(3.2rem, 6vw, 5.5rem);
+  font-weight: 700; line-height: 1.05; letter-spacing: -0.02em;
+  margin-bottom: 1.4rem; animation: fadeUp 0.5s 0.1s ease both;
+}
+.hero-title em { font-style: italic; color: var(--accent); font-weight: 300; }
+.hero-title .block { display: block; }
+.hero-sub {
+  font-size: 1rem; color: var(--muted); max-width: 560px;
+  line-height: 1.8; margin-bottom: 2.5rem; font-weight: 300;
+  animation: fadeUp 0.5s 0.2s ease both;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.5s 0.3s ease both; }
+.btn { display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; font-weight: 600; font-size: 0.85rem; border-radius: 6px; padding: 0.75rem 1.6rem; transition: all 0.2s; letter-spacing: 0.02em; }
+.btn-accent { background: var(--accent); color: #000; }
+.btn-accent:hover { opacity: 0.85; transform: translateY(-2px); }
+.btn-ghost { border: 1px solid var(--border2); color: var(--text); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+.hero-metrics {
+  display: flex; gap: 3rem; margin-top: 3.5rem;
+  padding-top: 2.5rem; border-top: 1px solid var(--border);
+  animation: fadeUp 0.5s 0.4s ease both;
+}
+.metric-val { font-family: var(--mono); font-size: 2rem; font-weight: 600; color: var(--accent); line-height: 1; }
+.metric-label { font-size: 0.74rem; color: var(--muted); margin-top: 0.3rem; letter-spacing: 0.04em; text-transform: uppercase; }
+
+/* ── TERMINAL CARD (hero right) ── */
+.hero-terminal {
+  position: absolute; right: 3.5rem; top: 50%; transform: translateY(-50%);
+  width: 340px; background: var(--surface); border: 1px solid var(--border2);
+  border-radius: 12px; overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5); animation: fadeUp 0.6s 0.3s ease both;
+}
+.terminal-bar {
+  background: var(--surface2); padding: 0.7rem 1rem;
+  display: flex; align-items: center; gap: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.t-dot { width: 9px; height: 9px; border-radius: 50%; }
+.terminal-title { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); margin-left: 0.5rem; }
+.terminal-body { padding: 1.2rem; font-family: var(--mono); font-size: 0.75rem; line-height: 1.8; }
+.t-line { display: flex; align-items: baseline; gap: 0.5rem; }
+.t-prompt { color: var(--accent); flex-shrink: 0; }
+.t-cmd { color: #a5b4fc; }
+.t-out { color: var(--muted); padding-left: 1.1rem; }
+.t-key { color: var(--warn); }
+.t-val { color: #86efac; }
+.t-cursor { display: inline-block; width: 7px; height: 13px; background: var(--accent); animation: cursor 1s infinite; vertical-align: middle; margin-left: 2px; }
+@keyframes cursor { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+
+/* ── SECTIONS ── */
+section { padding: 6rem 3.5rem; position: relative; z-index: 1; }
+.sec-label {
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.sec-label::after { content: ''; flex: 1; height: 1px; background: rgba(0,212,170,0.2); max-width: 60px; }
+.sec-title {
+  font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1rem;
+}
+.sec-desc { font-size: 0.95rem; color: var(--muted); max-width: 540px; line-height: 1.75; font-weight: 300; }
+
+/* ── FOCUS SECTION ── */
+.focus-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; margin-top: 3rem; }
+.focus-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1.8rem 1.6rem;
+  transition: border-color 0.2s, transform 0.2s;
+  position: relative; overflow: hidden;
+}
+.focus-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  opacity: 0; transition: opacity 0.2s;
+}
+.focus-card.c1::before { background: var(--accent); }
+.focus-card.c2::before { background: var(--accent2); }
+.focus-card.c3::before { background: var(--accent3); }
+.focus-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+.focus-card:hover::before { opacity: 1; }
+.focus-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+.focus-title { font-family: var(--sans); font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
+.focus-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+.focus-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+.ftag {
+  font-family: var(--mono); font-size: 0.65rem; padding: 0.18rem 0.55rem;
+  border-radius: 4px; font-weight: 500;
+}
+.ftag.a { background: rgba(0,212,170,0.1); color: var(--accent); }
+.ftag.b { background: rgba(59,130,246,0.1); color: #93c5fd; }
+.ftag.c { background: rgba(139,92,246,0.1); color: #c4b5fd; }
+
+/* ── SKILLS ── */
+.skills-section { background: var(--surface); }
+.skills-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 3rem; }
+.skill-group {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1.6rem;
+}
+.sg-header { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1.2rem; }
+.sg-icon { font-size: 1.1rem; }
+.sg-title { font-family: var(--mono); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); }
+.sg-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.stag {
+  font-size: 0.76rem; padding: 0.28rem 0.75rem; border-radius: 4px;
+  font-weight: 500; border: 1px solid;
+}
+.stag.ngs { background: rgba(0,212,170,0.08); color: var(--accent); border-color: rgba(0,212,170,0.2); }
+.stag.code { background: rgba(59,130,246,0.08); color: #93c5fd; border-color: rgba(59,130,246,0.2); }
+.stag.ai { background: rgba(139,92,246,0.08); color: #c4b5fd; border-color: rgba(139,92,246,0.2); }
+.stag.tool { background: rgba(245,158,11,0.08); color: #fcd34d; border-color: rgba(245,158,11,0.2); }
+.stag.soft { background: rgba(107,127,153,0.08); color: var(--muted); border-color: rgba(107,127,153,0.2); }
+
+/* ── EXPERIENCE ── */
+.exp-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 0; }
+.exp-item {
+  display: grid; grid-template-columns: 1fr 2.5fr;
+  gap: 3rem; padding: 2.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.exp-item:last-child { border-bottom: none; }
+.exp-meta { padding-top: 0.1rem; }
+.exp-period { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 0.5rem; }
+.exp-org { font-size: 0.82rem; font-weight: 600; color: var(--accent); margin-bottom: 0.3rem; }
+.exp-loc { font-size: 0.76rem; color: var(--muted); }
+.exp-role { font-family: var(--serif); font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.01em; }
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.exp-bullets li {
+  font-size: 0.86rem; color: var(--muted); padding-left: 1.3rem;
+  position: relative; line-height: 1.65;
+}
+.exp-bullets li::before { content: '›'; position: absolute; left: 0; color: var(--accent); font-size: 1rem; }
+.exp-bullets li strong { color: var(--text); font-weight: 500; }
+.exp-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+.estag {
+  font-family: var(--mono); font-size: 0.65rem; padding: 0.18rem 0.55rem;
+  border-radius: 3px; background: rgba(255,255,255,0.05);
+  color: var(--muted); border: 1px solid var(--border);
+}
+
+/* ── PROJECTS ── */
+.projects-section { background: var(--surface); }
+.proj-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 3rem; }
+.proj-card {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 12px; padding: 2rem; position: relative;
+  transition: transform 0.2s, border-color 0.2s;
+  display: flex; flex-direction: column;
+}
+.proj-card:hover { transform: translateY(-4px); border-color: var(--border2); }
+.proj-card.featured { border-color: rgba(0,212,170,0.25); background: linear-gradient(135deg, var(--bg), rgba(0,212,170,0.03)); }
+.proj-num { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em; margin-bottom: 0.8rem; }
+.proj-live {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-family: var(--mono); font-size: 0.65rem; color: var(--accent);
+  background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.2);
+  padding: 0.2rem 0.6rem; border-radius: 4px; margin-bottom: 0.8rem;
+}
+.proj-live::before { content: '●'; animation: blink 1.5s infinite; font-size: 0.5rem; }
+.proj-name { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.7rem; line-height: 1.3; }
+.proj-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; flex: 1; }
+.proj-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem; }
+.ptag {
+  font-family: var(--mono); font-size: 0.65rem; padding: 0.18rem 0.55rem;
+  border-radius: 3px; background: rgba(255,255,255,0.04);
+  color: var(--muted); border: 1px solid var(--border);
+}
+.ptag.hl { background: rgba(0,212,170,0.1); color: var(--accent); border-color: rgba(0,212,170,0.2); }
+.proj-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+.proj-link {
+  font-size: 0.78rem; font-weight: 600; text-decoration: none;
+  color: var(--accent2); display: inline-flex; align-items: center; gap: 0.3rem;
+  transition: gap 0.15s, color 0.15s;
+}
+.proj-link:hover { gap: 0.55rem; color: var(--accent); }
+.proj-link.gh { color: var(--muted); }
+.proj-link.gh:hover { color: var(--text); }
+
+/* ── PIPELINE VISUAL ── */
+.pipeline-section {}
+.pipeline-wrap {
+  margin-top: 3rem; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+}
+.pipeline-header {
+  background: var(--surface2); padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.pipeline-header .t-dot { }
+.pipeline-header span { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); margin-left: 0.4rem; }
+.pipeline-body { padding: 2rem; overflow-x: auto; }
+.pipeline-flow {
+  display: flex; align-items: center; gap: 0;
+  min-width: 900px; flex-wrap: nowrap;
+}
+.pipe-step {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 1rem 1.2rem; min-width: 130px;
+  flex-shrink: 0; position: relative;
+}
+.pipe-step.active { border-color: rgba(0,212,170,0.4); background: rgba(0,212,170,0.05); }
+.pipe-step.blue { border-color: rgba(59,130,246,0.3); background: rgba(59,130,246,0.04); }
+.pipe-step.purple { border-color: rgba(139,92,246,0.3); background: rgba(139,92,246,0.04); }
+.pipe-icon { font-size: 1.2rem; margin-bottom: 0.4rem; }
+.pipe-label { font-family: var(--mono); font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 0.2rem; }
+.pipe-tools { font-size: 0.72rem; color: var(--text); line-height: 1.4; }
+.pipe-arrow {
+  color: var(--muted); font-size: 1.2rem; padding: 0 0.4rem; flex-shrink: 0;
+}
+.pipeline-caption { padding: 1rem 2rem 1.5rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.cap-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--muted); }
+.cap-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── EDUCATION ── */
+.edu-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; margin-top: 3rem; }
+.edu-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1.6rem;
+}
+.edu-year { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+.edu-deg { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.3rem; line-height: 1.3; }
+.edu-inst { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.8rem; }
+.edu-score {
+  font-family: var(--mono); font-size: 0.76rem; font-weight: 600;
+  background: rgba(0,212,170,0.1); color: var(--accent);
+  border: 1px solid rgba(0,212,170,0.2); padding: 0.22rem 0.65rem;
+  border-radius: 4px; display: inline-block;
+}
+
+/* ── CERTS ── */
+.certs-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 0.9rem; margin-top: 3rem; max-width: 760px; }
+.cert-item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 1rem 1.2rem;
+  display: flex; align-items: center; gap: 0.9rem;
+  transition: transform 0.15s, border-color 0.2s;
+}
+.cert-item:hover { transform: translateX(4px); border-color: var(--border2); }
+.cert-icon { font-size: 1.1rem; flex-shrink: 0; }
+.cert-name { font-size: 0.84rem; font-weight: 500; }
+.cert-src { font-size: 0.74rem; color: var(--muted); margin-top: 0.15rem; }
+
+/* ── CONTACT ── */
+.contact-section {
+  background: var(--surface);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.contact-hl {
+  font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 1rem;
+}
+.contact-hl em { font-style: italic; color: var(--accent); font-weight: 300; }
+.contact-sub { font-size: 0.95rem; color: var(--muted); max-width: 480px; margin: 0 auto 2.5rem; font-weight: 300; line-height: 1.75; }
+.contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+.contact-link {
+  display: flex; align-items: center; gap: 0.9rem;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1rem 1.5rem; text-decoration: none;
+  color: var(--text); transition: border-color 0.2s, transform 0.15s;
+  min-width: 200px;
+}
+.contact-link:hover { border-color: var(--accent); transform: translateY(-2px); }
+.cl-icon { font-size: 1.2rem; }
+.cl-label { font-size: 0.88rem; font-weight: 600; }
+.cl-sub { font-size: 0.74rem; color: var(--muted); margin-top: 0.1rem; }
+
+footer { background: var(--bg); text-align: center; padding: 1.5rem; font-size: 0.74rem; color: var(--muted); border-top: 1px solid var(--border); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px) {
+  .hero-terminal { display: none; }
+}
+@media(max-width:900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links a { display: none; }
+  section { padding: 4rem 1.5rem; }
+  .focus-grid, .skills-grid, .edu-grid, .proj-grid { grid-template-columns: 1fr; }
+  .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  .hero { padding: 8rem 1.5rem 4rem; }
+  .hero-metrics { gap: 1.5rem; flex-wrap: wrap; }
+  .certs-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">shakthi<span>.bio</span></a>
+  <div class="nav-links">
+    <a href="#focus">Focus</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#pipelines">Pipelines</a>
+    <a href="#contact">Contact</a>
+    <a href="https://www.linkedin.com/in/shakthij" target="_blank" rel="noopener" class="nav-cta">LinkedIn ↗</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">● Open to Opportunities · Bengaluru, India</div>
+    <h1 class="hero-title">
+      <span class="block">Shakthi J</span>
+      <em>Bioinformatics</em>
+      <span class="block" style="color:var(--muted);font-weight:300;font-size:0.65em;font-style:normal;">NGS · Pipeline Automation · AI Integration</span>
+    </h1>
+    <p class="hero-sub">
+      MSc Bioinformatics specialist with end-to-end experience in NGS data analysis, automated workflow development, and AI-driven genomic applications. Delivering reproducible pipelines for WGS, metagenomics, RNA-Seq, and variant calling — aligned with Eurofins Genomics' mission of high-quality, fast-turnaround sequencing services.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-accent">View Projects →</a>
+      <a href="https://github.com/Shakthi-J" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
+      <a href="https://microbiome-analysis-demo-app.streamlit.app/" target="_blank" rel="noopener" class="btn btn-ghost">Live Demo ↗</a>
+    </div>
+    <div class="hero-metrics">
+      <div>
+        <div class="metric-val">WGS</div>
+        <div class="metric-label">· 16S · ITS · RNA-Seq</div>
+      </div>
+      <div>
+        <div class="metric-val">50+</div>
+        <div class="metric-label">Client Reports Delivered</div>
+      </div>
+      <div>
+        <div class="metric-val">95%</div>
+        <div class="metric-label">Viz Speed Gain (Pipeline App)</div>
+      </div>
+      <div>
+        <div class="metric-val">8.92</div>
+        <div class="metric-label">MSc CGPA</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terminal card -->
+  <div class="hero-terminal">
+    <div class="terminal-bar">
+      <div class="t-dot" style="background:#ff5f57"></div>
+      <div class="t-dot" style="background:#febc2e;margin-left:4px"></div>
+      <div class="t-dot" style="background:#28c840;margin-left:4px"></div>
+      <span class="terminal-title">ngs_pipeline.sh</span>
+    </div>
+    <div class="terminal-body">
+      <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">nextflow run pipeline.nf</span></div>
+      <div class="t-line"><span class="t-out">Launching pipeline v2.4...</span></div>
+      <div class="t-line"><span class="t-out"><span class="t-key">executor</span>  &gt; <span class="t-val">local</span></span></div>
+      <div class="t-line"><span class="t-out"><span class="t-key">samples</span>   &gt; <span class="t-val">48 loaded</span></span></div>
+      <div style="margin: 0.6rem 0; border-top: 1px solid var(--border);"></div>
+      <div class="t-line"><span class="t-out">✔ FastQC            <span class="t-val">[100%]</span></span></div>
+      <div class="t-line"><span class="t-out">✔ Trimmomatic       <span class="t-val">[100%]</span></span></div>
+      <div class="t-line"><span class="t-out">✔ BWA-MEM align     <span class="t-val">[100%]</span></span></div>
+      <div class="t-line"><span class="t-out">✔ GATK HaplotypeCaller <span class="t-val">[100%]</span></span></div>
+      <div class="t-line"><span class="t-out">✔ VCF annotation    <span class="t-val">[100%]</span></span></div>
+      <div style="margin: 0.6rem 0; border-top: 1px solid var(--border);"></div>
+      <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd"> <span class="t-cursor"></span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOCUS AREAS -->
+<section id="focus">
+  <div class="sec-label">What I Bring</div>
+  <h2 class="sec-title">Built for Eurofins Genomics</h2>
+  <p class="sec-desc">My expertise maps directly to Eurofins' core service lines — NGS analysis, scalable pipelines, and software-driven genomic delivery at scale.</p>
+
+  <div class="focus-grid">
+    <div class="focus-card c1 reveal">
+      <div class="focus-icon">🧬</div>
+      <div class="focus-title">NGS Data Analysis</div>
+      <div class="focus-desc">End-to-end analysis across WGS, RNA-Seq, 16S/ITS metagenomics, exome, and QTLseq. Proficient in QC, alignment, variant calling, annotation, and report generation for diverse sequencing data.</div>
+      <div class="focus-tags">
+        <span class="ftag a">WGS</span><span class="ftag a">RNA-Seq</span><span class="ftag a">16S/ITS</span>
+        <span class="ftag a">Exome</span><span class="ftag a">Metagenomics</span>
+      </div>
+    </div>
+    <div class="focus-card c2 reveal">
+      <div class="focus-icon">⚙️</div>
+      <div class="focus-title">Pipeline Development & Automation</div>
+      <div class="focus-desc">Designing reproducible, automated workflows using Nextflow, Bash, and Python. Experience managing large-scale datasets in Linux HPC environments with version-controlled, documented pipelines on GitHub.</div>
+      <div class="focus-tags">
+        <span class="ftag b">Nextflow</span><span class="ftag b">Python</span><span class="ftag b">Bash</span>
+        <span class="ftag b">Linux</span><span class="ftag b">GitHub</span>
+      </div>
+    </div>
+    <div class="focus-card c3 reveal">
+      <div class="focus-icon">🤖</div>
+      <div class="focus-title">AI & Software Integration</div>
+      <div class="focus-desc">Building AI-powered applications — from Streamlit-based metagenomics tools to ML-driven genomic classifiers and Protein LLM-based structure modeling. Bridging wet lab science with deployable software.</div>
+      <div class="focus-tags">
+        <span class="ftag c">ML/AI</span><span class="ftag c">Streamlit</span><span class="ftag c">Protein LLMs</span>
+        <span class="ftag c">Google Colab</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-section">
+  <div class="sec-label">Technical Stack</div>
+  <h2 class="sec-title">Skills & Tools</h2>
+  <p class="sec-desc">Proficiency across the full bioinformatics stack — from sequencing platforms to software development and AI integration.</p>
+
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <div class="sg-header">
+        <span class="sg-icon">🧬</span>
+        <span class="sg-title">Sequencing & Analysis</span>
+      </div>
+      <div class="sg-tags">
+        <span class="stag ngs">NGS (WGS · RNASeq · Exome)</span>
+        <span class="stag ngs">16S/ITS Metagenomics</span>
+        <span class="stag ngs">ONT (Nanopore)</span>
+        <span class="stag ngs">Sanger Sequencing</span>
+        <span class="stag ngs">SNP Variant Calling</span>
+        <span class="stag ngs">QTLseq</span>
+        <span class="stag ngs">Phylogenomics</span>
+        <span class="stag ngs">Small RNA</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="sg-header">
+        <span class="sg-icon">🛠</span>
+        <span class="sg-title">Bioinformatics Tools</span>
+      </div>
+      <div class="sg-tags">
+        <span class="stag tool">GATK</span><span class="stag tool">BWA</span><span class="stag tool">SAMtools</span>
+        <span class="stag tool">bcftools</span><span class="stag tool">FastQC</span><span class="stag tool">MultiQC</span>
+        <span class="stag tool">QIIME2</span><span class="stag tool">Mothur</span><span class="stag tool">Kraken2</span>
+        <span class="stag tool">Trimmomatic</span><span class="stag tool">MAFFT</span><span class="stag tool">MEGA</span>
+        <span class="stag tool">LEfSe</span><span class="stag tool">PICRUSt2</span><span class="stag tool">BLAST</span>
+        <span class="stag tool">MinKNOW · Guppy</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="sg-header">
+        <span class="sg-icon">💻</span>
+        <span class="sg-title">Programming & Development</span>
+      </div>
+      <div class="sg-tags">
+        <span class="stag code">Python</span><span class="stag code">R</span>
+        <span class="stag code">Bash / Shell Scripting</span><span class="stag code">MySQL / SQL</span>
+        <span class="stag code">Nextflow</span><span class="stag code">Streamlit</span>
+        <span class="stag code">pandas · NumPy · scikit-learn</span>
+        <span class="stag code">Biopython · RDKit</span>
+        <span class="stag code">Matplotlib · Seaborn</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="sg-header">
+        <span class="sg-icon">🤖</span>
+        <span class="sg-title">AI / ML & Cloud</span>
+      </div>
+      <div class="sg-tags">
+        <span class="stag ai">Machine Learning (SVM · RF · LR)</span>
+        <span class="stag ai">PCA & Dimensionality Reduction</span>
+        <span class="stag ai">Protein LLMs</span>
+        <span class="stag ai">Molecular Docking (AutoDock)</span>
+        <span class="stag ai">QSAR Modeling</span>
+        <span class="stag ai">Google Colab</span>
+        <span class="stag ai">GitHub Version Control</span>
+        <span class="stag ai">Linux HPC</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-label">Career Timeline</div>
+  <h2 class="sec-title">Experience</h2>
+
+  <div class="exp-list">
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Aug 2025 – Present</div>
+        <div class="exp-org">Biocon Ltd</div>
+        <div class="exp-loc">Bengaluru, India</div>
+      </div>
+      <div>
+        <div class="exp-role">Computational Biology Intern</div>
+        <ul class="exp-bullets">
+          <li>Performing <strong>AI-driven protein structure modeling and alignment</strong> using Protein Large Language Models (LLMs) to predict biophysical properties in the API R&D Fermentation Department.</li>
+          <li>Utilizing computational approaches to investigate <strong>reaction kinetics</strong> and guide <strong>strain and enzyme engineering</strong> efforts, significantly increasing batch production yields.</li>
+          <li>Designing and delivering <strong>in-silico computational workflows</strong> that directly support experimental teams, accelerating decision-making in fermentation R&D.</li>
+        </ul>
+        <div class="exp-stack">
+          <span class="estag">Protein LLMs</span><span class="estag">Structure Modeling</span>
+          <span class="estag">Python</span><span class="estag">Computational Biology</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Feb 2025 – June 2025</div>
+        <div class="exp-org">IBAB, Bengaluru</div>
+        <div class="exp-loc">Institute of Bioinformatics & Applied Biotechnology</div>
+      </div>
+      <div>
+        <div class="exp-role">Bioinformatics Research Intern — WGS & Metagenomics</div>
+        <ul class="exp-bullets">
+          <li>Built <strong>structured databases</strong> to organize and manage large-scale environmental metagenomic datasets from WGS and 16S rRNA projects.</li>
+          <li>Designed and <strong>automated multi-step analysis pipelines</strong> using Python, Bash, and shell scripting in Linux environments — reducing manual processing time significantly.</li>
+          <li>Utilized <strong>Google Colab for cloud-based multi-omics data visualization</strong> and scalable processing of complex datasets.</li>
+          <li>Ensured <strong>full reproducibility</strong> through version-controlled documentation and collaborative pipeline management on GitHub.</li>
+        </ul>
+        <div class="exp-stack">
+          <span class="estag">WGS</span><span class="estag">16S rRNA</span><span class="estag">Python</span>
+          <span class="estag">Bash</span><span class="estag">Linux</span><span class="estag">Google Colab</span><span class="estag">GitHub</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Apr 2023 – Aug 2023</div>
+        <div class="exp-org">Biokart Indian Pvt. Ltd</div>
+        <div class="exp-loc">Junior Bioinformatician</div>
+      </div>
+      <div>
+        <div class="exp-role">Junior Bioinformatician</div>
+        <ul class="exp-bullets">
+          <li>Performed <strong>multi-layered omics analyses</strong>: 16S/ITS microbiome studies, SNP variant calling, and comparative genomic analyses.</li>
+          <li>Generated <strong>interactive QC reports and communicated findings</strong> with 50+ clients — developing strong client-facing technical communication skills.</li>
+          <li>Integrated patient and control datasets using <strong>customized R and Python workflows</strong> for disease research.</li>
+          <li>Applied <strong>supervised ML models and statistical methods</strong> for comparative disease analysis; promoted to full-time after internship.</li>
+          <li>Co-authored analysis contributing to <strong>chloroplast genome comparison study</strong> (NGS-based phylogenetics, published with Biokart team).</li>
+        </ul>
+        <div class="exp-stack">
+          <span class="estag">16S/ITS</span><span class="estag">SNP Calling</span><span class="estag">R</span>
+          <span class="estag">Python</span><span class="estag">NGS</span><span class="estag">Client Reporting</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="projects-section">
+  <div class="sec-label">Built & Deployed</div>
+  <h2 class="sec-title">Projects</h2>
+  <p class="sec-desc">Real tools, real data, real outputs — from cloud-based metagenomics apps to ML-driven cancer classifiers.</p>
+
+  <div class="proj-grid">
+
+    <div class="proj-card featured reveal">
+      <div class="proj-live">LIVE APP</div>
+      <div class="proj-name">Metagenome Analysis App</div>
+      <div class="proj-desc">
+        Cloud-based Streamlit pipeline integrated with Google Colab for microbiome data analysis. Automates sample processing, taxonomic classification (Kraken2), and result visualization — accelerating data visualization by <strong>95%</strong> and enabling biomarker identification for disease research. Built for researchers and small labs who need accessible, reproducible metagenomics.
+      </div>
+      <div class="proj-stack">
+        <span class="ptag hl">Streamlit</span><span class="ptag hl">Kraken2</span>
+        <span class="ptag">Google Colab</span><span class="ptag">Python</span>
+        <span class="ptag">Shell Scripting</span><span class="ptag">Linux</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://microbiome-analysis-demo-app.streamlit.app/" target="_blank" rel="noopener" class="proj-link">Live Demo ↗</a>
+        <a href="https://github.com/Shakthi-J/Microbiome_Streamlit_APP.git" target="_blank" rel="noopener" class="proj-link gh">GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-num">PROJECT 02</div>
+      <div class="proj-name">16S rRNA Gut Microbiota Analysis — Hypothyroidism</div>
+      <div class="proj-desc">
+        Led a study comparing microbial diversity and functional profiles in 16S rRNA sequences of hypothyroid vs. healthy pregnant women. Identified taxonomic variations and metabolic pathways linking gut microbiome composition to hypothyroidism using QIIME2, LEfSe, and PICRUSt2.
+      </div>
+      <div class="proj-stack">
+        <span class="ptag hl">QIIME2</span><span class="ptag hl">16S rRNA</span>
+        <span class="ptag">Mothur</span><span class="ptag">FastQC</span><span class="ptag">LEfSe</span>
+        <span class="ptag">PICRUSt2</span><span class="ptag">Kraken2</span><span class="ptag">Galaxy</span>
+        <span class="ptag">Python (pandas · seaborn)</span>
+      </div>
+      <div class="proj-links">
+        <span style="font-size:0.78rem;color:var(--muted)">Dec 2024 – Feb 2025</span>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-live">LIVE APP</div>
+      <div class="proj-name">TrialDoc AI — Clinical Document Intelligence</div>
+      <div class="proj-desc">
+        AI-powered Streamlit application for clinical trial document analysis. Demonstrates software engineering capability for genomic/clinical data applications — real LLM integration, document parsing, and intelligent summarization deployed on the web.
+      </div>
+      <div class="proj-stack">
+        <span class="ptag hl">Streamlit</span><span class="ptag hl">LLM Integration</span>
+        <span class="ptag">Python</span><span class="ptag">Clinical Data</span><span class="ptag">AI</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://trialdoc-ai.streamlit.app/" target="_blank" rel="noopener" class="proj-link">Live App ↗</a>
+        <a href="http://github.com/Shakthi-J/trialdoc-ai.git" target="_blank" rel="noopener" class="proj-link gh">GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-num">PROJECT 04</div>
+      <div class="proj-name">AI/ML Lung Cancer Classification (TCGA-LUSC)</div>
+      <div class="proj-desc">
+        Applied PCA and supervised ML (SVM, Random Forest, Logistic Regression) to classify lung cancer subtypes from gene expression data. Demonstrates ability to apply ML to genomic datasets — directly applicable to NGS-based variant interpretation and biomarker discovery pipelines.
+      </div>
+      <div class="proj-stack">
+        <span class="ptag hl">scikit-learn</span><span class="ptag hl">PCA</span>
+        <span class="ptag">SVM · RF · LR</span><span class="ptag">TCGA</span>
+        <span class="ptag">Python</span><span class="ptag">pandas · NumPy</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/Shakthi-J/Genomics-ML-Disease-Classification.git" target="_blank" rel="noopener" class="proj-link">GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-num">PROJECT 05</div>
+      <div class="proj-name">80S Ribosome Docking with Psychiatric Drugs</div>
+      <div class="proj-desc">
+        Molecular docking studies on psychiatric drugs with the 80S ribosome, integrating both RNA and protein components. Evaluated binding affinities to understand potential drug-target interactions. Conducted in collaboration with the University of Toledo, USA.
+      </div>
+      <div class="proj-stack">
+        <span class="ptag">AutoDock</span><span class="ptag">Chimera</span>
+        <span class="ptag">Discovery Studio</span><span class="ptag">Open Babel</span>
+        <span class="ptag">BioPython</span><span class="ptag">PDB</span>
+      </div>
+      <div class="proj-links">
+        <span style="font-size:0.78rem;color:var(--muted)">International Collaboration · Univ. of Toledo, USA</span>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-num">PROJECT 06</div>
+      <div class="proj-name">Comparative Chloroplast Genome Analysis (NGS)</div>
+      <div class="proj-desc">
+        Mapped and compared chloroplast genomes across multiple plant species using NGS. Conducted phylogenetic analysis using BLAST, MAFFT, and MEGA to study evolutionary divergence and functional gene variations. Delivered in collaboration with the Biokart Bioinformatics team.
+      </div>
+      <div class="proj-stack">
+        <span class="ptag hl">NGS</span><span class="ptag">BLAST</span>
+        <span class="ptag">MAFFT</span><span class="ptag">MEGA</span>
+        <span class="ptag">Biopython</span><span class="ptag">Phylogenetics</span>
+      </div>
+      <div class="proj-links">
+        <span style="font-size:0.78rem;color:var(--muted)">Industry Collaboration · Biokart India</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PIPELINE VISUAL -->
+<section id="pipelines" class="pipeline-section">
+  <div class="sec-label">Workflow Expertise</div>
+  <h2 class="sec-title">NGS Analysis Pipeline</h2>
+  <p class="sec-desc">Hands-on experience running and optimizing every stage of the NGS analysis workflow — from raw reads to annotated variants and reports.</p>
+
+  <div class="pipeline-wrap reveal">
+    <div class="pipeline-header">
+      <div class="t-dot" style="background:#ff5f57"></div>
+      <div class="t-dot" style="background:#febc2e;margin-left:4px"></div>
+      <div class="t-dot" style="background:#28c840;margin-left:4px"></div>
+      <span>standard_ngs_pipeline.nf — WGS / Exome / RNA-Seq</span>
+    </div>
+    <div class="pipeline-body">
+      <div class="pipeline-flow">
+        <div class="pipe-step active">
+          <div class="pipe-icon">📥</div>
+          <div class="pipe-label">Raw Data</div>
+          <div class="pipe-tools">FASTQ input<br>Sample manifest</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step active">
+          <div class="pipe-icon">🔍</div>
+          <div class="pipe-label">QC</div>
+          <div class="pipe-tools">FastQC<br>MultiQC<br>Trimmomatic</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step blue">
+          <div class="pipe-icon">🗺</div>
+          <div class="pipe-label">Alignment</div>
+          <div class="pipe-tools">BWA-MEM<br>SAMtools<br>Picard</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step blue">
+          <div class="pipe-icon">🧬</div>
+          <div class="pipe-label">Variant Calling</div>
+          <div class="pipe-tools">GATK<br>bcftools<br>DeepVariant</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step purple">
+          <div class="pipe-icon">🏷</div>
+          <div class="pipe-label">Annotation</div>
+          <div class="pipe-tools">VEP / ANNOVAR<br>SnpEff<br>dbSNP</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step purple">
+          <div class="pipe-icon">📊</div>
+          <div class="pipe-label">Reporting</div>
+          <div class="pipe-tools">R markdown<br>Streamlit<br>MultiQC</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step active">
+          <div class="pipe-icon">✅</div>
+          <div class="pipe-label">Delivery</div>
+          <div class="pipe-tools">Client report<br>Reproducible<br>GitHub tracked</div>
+        </div>
+      </div>
+    </div>
+    <div class="pipeline-caption">
+      <div class="cap-item"><div class="cap-dot" style="background:var(--accent)"></div>QC & Pre-processing</div>
+      <div class="cap-item"><div class="cap-dot" style="background:var(--accent2)"></div>Alignment & Calling</div>
+      <div class="cap-item"><div class="cap-dot" style="background:var(--accent3)"></div>Annotation & Reporting</div>
+      <div style="margin-left:auto;font-family:var(--mono);font-size:0.68rem;color:var(--muted)">Orchestrated via Nextflow · Linux HPC · Python automation</div>
+    </div>
+  </div>
+
+  <!-- Metagenomics pipeline -->
+  <div class="pipeline-wrap reveal" style="margin-top:1.5rem">
+    <div class="pipeline-header">
+      <div class="t-dot" style="background:#ff5f57"></div>
+      <div class="t-dot" style="background:#febc2e;margin-left:4px"></div>
+      <div class="t-dot" style="background:#28c840;margin-left:4px"></div>
+      <span>metagenomics_pipeline.sh — 16S · ITS · WGS Metagenome</span>
+    </div>
+    <div class="pipeline-body">
+      <div class="pipeline-flow">
+        <div class="pipe-step active">
+          <div class="pipe-icon">🧪</div>
+          <div class="pipe-label">Raw Reads</div>
+          <div class="pipe-tools">16S / ITS<br>WGS FASTQ</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step active">
+          <div class="pipe-icon">✂️</div>
+          <div class="pipe-label">QC & Trim</div>
+          <div class="pipe-tools">FastQC<br>Trimmomatic<br>DADA2</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step blue">
+          <div class="pipe-icon">🔬</div>
+          <div class="pipe-label">Classification</div>
+          <div class="pipe-tools">Kraken2<br>QIIME2<br>Mothur</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step blue">
+          <div class="pipe-icon">📈</div>
+          <div class="pipe-label">Diversity</div>
+          <div class="pipe-tools">Alpha / Beta<br>LEfSe<br>PICRUSt2</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step purple">
+          <div class="pipe-icon">🤖</div>
+          <div class="pipe-label">ML / Stats</div>
+          <div class="pipe-tools">scikit-learn<br>R stats<br>Biostatistics</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step purple">
+          <div class="pipe-icon">📱</div>
+          <div class="pipe-label">App / Report</div>
+          <div class="pipe-tools">Streamlit APP<br>Interactive viz<br>Client PDF</div>
+        </div>
+      </div>
+    </div>
+    <div class="pipeline-caption">
+      <div style="font-family:var(--mono);font-size:0.68rem;color:var(--muted)">Deployed as live Streamlit app · 95% faster visualization · 50+ client deliveries</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="sec-label">Academic Background</div>
+  <h2 class="sec-title">Education</h2>
+
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-year">2023 – 2025</div>
+      <div class="edu-deg">M.Sc. Bioinformatics</div>
+      <div class="edu-inst">Garden City University, Bengaluru</div>
+      <div class="edu-score">CGPA: 8.92 · 84.74%</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-year">2020 – 2023</div>
+      <div class="edu-deg">B.Sc. Biotechnology, Biochemistry & Genetics</div>
+      <div class="edu-inst">Garden City University, Bengaluru</div>
+      <div class="edu-score">CGPA: 8.6 · 81.7%</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-year">2018 – 2020</div>
+      <div class="edu-deg">Pre-University · PCMB Science</div>
+      <div class="edu-inst">St. Joseph's Indian Composite PU College</div>
+      <div class="edu-score">72.3%</div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" style="background:var(--surface)">
+  <div class="sec-label">Learning & Credentials</div>
+  <h2 class="sec-title">Certifications</h2>
+
+  <div class="certs-grid">
+    <div class="cert-item reveal">
+      <div class="cert-icon">🦠</div>
+      <div>
+        <div class="cert-name">Gut Check: Exploring Your Microbiome</div>
+        <div class="cert-src">University of Colorado Boulder · Coursera</div>
+      </div>
+    </div>
+    <div class="cert-item reveal">
+      <div class="cert-icon">💻</div>
+      <div>
+        <div class="cert-name">Hands-on Introduction to Linux & Shell Scripting</div>
+        <div class="cert-src">IBM · Coursera</div>
+      </div>
+    </div>
+    <div class="cert-item reveal">
+      <div class="cert-icon">🧬</div>
+      <div>
+        <div class="cert-name">Finding Hidden Messages in DNA (Bioinformatics I)</div>
+        <div class="cert-src">UC San Diego · Coursera</div>
+      </div>
+    </div>
+    <div class="cert-item reveal">
+      <div class="cert-icon">💊</div>
+      <div>
+        <div class="cert-name">Intro to Small Molecule Drug Discovery & Development</div>
+        <div class="cert-src">UC San Diego · Coursera</div>
+      </div>
+    </div>
+    <div class="cert-item reveal">
+      <div class="cert-icon">🏆</div>
+      <div>
+        <div class="cert-name">5th Prize — Samatva Annual Lecture Competition 2024</div>
+        <div class="cert-src">Manipal Institute of Regenerative Medicine (MAHE)</div>
+      </div>
+    </div>
+    <div class="cert-item reveal">
+      <div class="cert-icon">🎖</div>
+      <div>
+        <div class="cert-name">NCC Sergeant — National Cadet Corps</div>
+        <div class="cert-src">Leadership · Discipline · Teamwork · 2020–2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="contact-hl">Let's Work<br><em>Together</em></div>
+  <p class="contact-sub">Looking to contribute to Eurofins Genomics' NGS service delivery, pipeline development, and genomic software capabilities. Open to Scientist I and Bio-IT Bioinformatics roles in Bengaluru.</p>
+  <div class="contact-links">
+    <a href="mailto:shakthipostbox@gmail.com" class="contact-link">
+      <div class="cl-icon">✉️</div>
+      <div>
+        <div class="cl-label">Email</div>
+        <div class="cl-sub">shakthipostbox@gmail.com</div>
+      </div>
+    </a>
+    <a href="tel:+917337810224" class="contact-link">
+      <div class="cl-icon">📞</div>
+      <div>
+        <div class="cl-label">Phone</div>
+        <div class="cl-sub">+91 7337810224</div>
+      </div>
+    </a>
+    <a href="https://www.linkedin.com/in/shakthij" target="_blank" rel="noopener" class="contact-link">
+      <div class="cl-icon">💼</div>
+      <div>
+        <div class="cl-label">LinkedIn</div>
+        <div class="cl-sub">linkedin.com/in/shakthij</div>
+      </div>
+    </a>
+    <a href="https://github.com/Shakthi-J" target="_blank" rel="noopener" class="contact-link">
+      <div class="cl-icon">🐙</div>
+      <div>
+        <div class="cl-label">GitHub</div>
+        <div class="cl-sub">github.com/Shakthi-J</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  Shakthi J · Bioinformatics Specialist · Bengaluru · shakthipostbox@gmail.com
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Active nav
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+  navLinks.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
+}, { passive: true });
+</script>
+</body>
+</html>
